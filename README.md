@@ -2,16 +2,16 @@
 
 **MagicMirror²** is an open source modular smart mirror platform. With a growing list of installable modules, the **MagicMirror²** allows you to convert your hallway or bathroom mirror into your personal assistant.
 
-[![DockerHub Badge](https://dockeri.co/image/bastilimbach/docker-magicmirror)](https://hub.docker.com/r/bastilimbach/docker-magicmirror/)
+[![DockerHub Badge](https://dockeri.co/image/xbgmsharp/docker-magicmirror)](https://hub.docker.com/r/xbgmsharp/docker-magicmirror/)
 
-# Why Docker? [![Build Status](https://travis-ci.org/bastilimbach/docker-MagicMirror.svg?branch=master)](https://travis-ci.org/bastilimbach/docker-MagicMirror)
+# Why Docker? [![Build Status](https://travis-ci.com/xbgmsharp/docker-MagicMirror.svg?branch=master)](https://travis-ci.com/xbgmsharp/docker-MagicMirror)
 In some cases, you want to start the application without an actual app window. In this case, you can start MagicMirror² in server only mode by manually running `node serveronly` or using Docker. This will start the server, after which you can open the application in your browser of choice.
 
 # Supported tags:
 
-- `latest` - Latest MagicMirror² server ([Dockerfile](https://github.com/bastilimbach/docker-MagicMirror/blob/master/Dockerfile))
+- `latest` - Latest MagicMirror² server ([Dockerfile](https://github.com/xbgmsharp/docker-MagicMirror/blob/master/Dockerfile))
 
-> The docker images are getting updated daily by a cron job from ([Travis CI](https://travis-ci.org/bastilimbach/docker-MagicMirror)).
+> The docker images are getting updated daily by a cron job from ([Travis CI](https://travis-ci.com/xbgmsharp/docker-MagicMirror)).
 > Base on NodeJS LTS Alpine Linux
 
 # Supported architectures: ([more info](https://github.com/docker-library/official-images#architectures-other-than-amd64))
@@ -23,14 +23,14 @@ In some cases, you want to start the application without an actual app window. I
 After a successful [Docker installation](https://docs.docker.com/engine/installation/) you just need to execute the following command in the shell:
 
 ```bash
-docker pull bastilimbach/docker-magicmirror
+docker pull xbgmsharp/docker-magicmirror
 docker run  -d \
 	--publish 80:8080 \
 	--restart always \
 	--volume ~/magic_mirror/config:/opt/magic_mirror/config \
 	--volume ~/magic_mirror/modules:/opt/magic_mirror/modules \
 	--name magic_mirror \
-	bastilimbach/docker-magicmirror
+	xbgmsharp/docker-magicmirror
 ```
 
 # Volumes
@@ -54,7 +54,7 @@ if (typeof module !== "undefined") { module.exports = config; }
 ```
 
 # Contribution
-I'm happy to accept Pull Requests! Please note that this project is released with a [Contributor Code of Conduct](https://github.com/bastilimbach/docker-MagicMirror/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+I'm happy to accept Pull Requests! Please note that this project is released with a [Contributor Code of Conduct](https://github.com/xbgmsharp/docker-MagicMirror/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 # License
-[MIT](https://github.com/bastilimbach/docker-MagicMirror/blob/master/LICENSE) ❤️
+[MIT](https://github.com/xbgmsharp/docker-MagicMirror/blob/master/LICENSE) ❤️
