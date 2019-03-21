@@ -33,17 +33,14 @@ for arch in ${IMAGE_ARCH}; do
   then
 	QEMU_ARCH="aarch64"
   fi
-  docker build --build-arg ARCH=${arch} --build-arg QEMU_BIN=qemu-${QEMU_ARCH}-static -t $DOCKER_USER/docker-magicmirror:${arch} .
-  #docker push $DOCKER_USER/docker-magicmirror:${arch}
+  docker build --build-arg ARCH=${arch} --build-arg QEMU_BIN=qemu-${QEMU_ARCH}-static -t $DOCKER_USER/docker-magicmirror:${QEMU_ARCH} .
 done
 
 echo "Manifest downloading ..."
 # Download Docker Manifet tool
-wget -Nv https://github.com/estesp/manifest-tool/releases/download/v0.9.0/manifest-tool-linux-amd64
+wget -Nq https://github.com/estesp/manifest-tool/releases/download/v0.9.0/manifest-tool-linux-amd64
 mv manifest-tool-linux-amd64 manifest-tool
 chmod +x manifest-tool
 ./manifest-tool --help # Just to check that it's working
 
 #./manifest-tool push from-spec manifest.yaml
-
-docker images
