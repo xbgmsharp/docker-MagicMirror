@@ -16,8 +16,3 @@ manifests:
    platform:
      architecture: amd64
      os: linux
- -
-   image: xbgmsharp/docker-magicmirror:i386
-   platform:
-     architecture: i386
-     os: linux
