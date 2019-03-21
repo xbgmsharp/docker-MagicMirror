@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-ARG QEMU_BIN
+ARG QEMU_BIN=qemu-x86_64-static
 
 FROM ${ARCH}/node:lts-alpine
 
