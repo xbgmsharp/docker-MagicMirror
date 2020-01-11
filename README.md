@@ -72,7 +72,7 @@ if (typeof module !== "undefined") { module.exports = config; }
 
 # Updating Info
 
-Most of our images are static, versioned, and require an image update and container recreation to update the app inside. With some exceptions (ie. nextcloud, plex), we do not recommend or support updating apps inside the container. Please consult the [Application Setup](#application-setup) section above to see if it is recommended for the image.
+Most of our images are static, versioned, and require an image update and container recreation to update the app inside. 
 
 Below are the instructions for updating containers:
 
