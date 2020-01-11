@@ -44,15 +44,21 @@ docker run  -d \
 	xbgmsharp/docker-magicmirror
 ```
 
-# Volumes
-| **Volume** | **Description** |
-| --- | --- |
-| `/opt/magic_mirror/config` | Mount this folder to insert your own config into the docker container. |
-| `/opt/magic_mirror/modules` | Mount this folder to add your own custom modules into the docker container. |
-| `/opt/magic_mirror/css` | Mount this directory to add your own custom css into the docker container. <br><br> **Important:** You need to create the file before you run the container. Otherwise Docker will create a `custom.css` folder. |
+# Parameters
+Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
+
+| Parameter | Function |
+| :----: | --- |
+| `-p 8080` | require for magicmirror to function |
+| `-e PUID=1000` | for UserID (optional) |
+| `-e PGID=1000` | for GroupID (optional) |
+| `-e TZ=Europe/Paris` | TimeZone (optional) |
+| `-v /opt/magic_mirror/config` | Mount this folder to insert your own config into the docker container. |
+| `-v /opt/magic_mirror/modules` | Mount this folder to add your own custom modules into the docker container. |
+| `-v /opt/magic_mirror/css` | Mount this directory to add your own custom css into the docker container. <br><br> **Important:** You need to create the file before you run the container. Otherwise Docker will create a `custom.css` folder. |
 
 # Config
-You need to configure your MagicMirror² config to listen on any interface and allow every ip address.
+You need to configure your MagicMirror² config to listen on all interface and allow every ip address.
 
 ```javascript
 var config = {
@@ -62,6 +68,37 @@ var config = {
 }
 
 if (typeof module !== "undefined") { module.exports = config; }
+```
+
+# Updating Info
+
+Most of our images are static, versioned, and require an image update and container recreation to update the app inside. With some exceptions (ie. nextcloud, plex), we do not recommend or support updating apps inside the container. Please consult the [Application Setup](#application-setup) section above to see if it is recommended for the image.
+
+Below are the instructions for updating containers:
+
+## Via Docker Run/Create
+* Update the image: `docker pull xbgmsharp/docker-magicmirror`
+* Stop the running container: `docker stop magicmirror`
+* Delete the container: `docker rm magicmirror`
+* Recreate a new container with the same docker create parameters as instructed above (if mapped correctly to a host folder, your `config` and `modules` folder with settings will be preserved)
+* Start the new container: `docker start magicmirror`
+* You can also remove the old dangling images: `docker image prune`
+
+```bash
+docker pull xbgmsharp/docker-magicmirror
+docker stop magic_mirror
+docker rm magic_mirror
+docker create \
+  -e PUID=1000 \
+  -e PGID=100 \
+  -e TZ=Europe/Paris \
+  --restart unless-stopped \
+  --publish 8181:8080 \
+  --volume ~/magic_mirror/config:/opt/magic_mirror/config \
+  --volume ~/magic_mirror/modules:/opt/magic_mirror/modules \
+  --volume ~/magic_mirror/css:/opt/magic_mirror/css \
+  --name magic_mirror xbgmsharp/docker-magicmirror
+docker start magic_mirror
 ```
 
 # Contribution
