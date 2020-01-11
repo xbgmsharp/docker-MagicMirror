@@ -56,7 +56,7 @@ You need to configure your MagicMirror² config to listen on any interface and a
 
 ```javascript
 var config = {
-    address: "",
+    address: "0.0.0.0",
     port: 8080,
     ipWhitelist: []
 }
